@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { BasketContext } from '../../context/BasketContext'
 
 const Basket = () => {
-    const { basket, deleteBasket, increaseBasket,decreaseBasket  } = useContext(BasketContext)
+    const { basket, deleteBasket, increaseBasket, decreaseBasket } = useContext(BasketContext)
     return (
         <div>
             <Helmet>

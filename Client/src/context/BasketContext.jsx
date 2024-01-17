@@ -15,13 +15,13 @@ const BasketProvider = ({ children }) => {
     }
     //delete
     function deleteBasket(products) {
-        const deletedBasket = basket.filter(x = x._id !== products._id)
+        const deletedBasket = basket.filter(x => x._id !== products._id)
         setBasket(deletedBasket)
     }
 
     // increase 
     function increaseBasket(products) {
-        const existBasket = basket.findIndex(x = x._id === products._id)
+        const existBasket = basket.findIndex(x => x._id === products._id)
         if (existBasket !== -1) {
             basket[existBasket].count++
             setBasket([...basket])
@@ -32,26 +32,31 @@ const BasketProvider = ({ children }) => {
 
     //decrease
     function decreaseBasket(products) {
-        const existBasket = basket.findIndex(x = x._id === products._id)
-        if (existBasket && existBasket.count > 1) {
+        const existBasket = basket.find(x => x._id === products._id)
+        if (existBasket && existBasket.count >= 1) {
             existBasket.count--
             setBasket([...basket])
             return
         }
-        setBasket(basket.filter((x) => x = x._id !== products._id))
+        else {
+            setBasket(basket.filter((x) => x._id !== products._id))
+            return
+        }
     }
 
     const data = {
         basket, setBasket, addBasket, deleteBasket, increaseBasket, decreaseBasket
     }
+
+    return (
+        <>
+            <BasketContext.Provider value={data}>
+                {children}
+            </BasketContext.Provider>
+        </>
+    )
 }
-return (
-    <>
-        <BasketContext.Provider value={data}>
-            {children}
-        </BasketContext.Provider>
-    </>
-)
+
 
 
 export default BasketProvider

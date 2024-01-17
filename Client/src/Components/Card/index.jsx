@@ -17,7 +17,7 @@ const Card = ({ text, title, id, products }) => {
                         <h2>{title}</h2>
                     </div>
                     <div className="CardIcon">
-                        <div onClick={()=>addBasket(products)}><FaBasketShopping /></div>
+                        <div onClick={() => addBasket(products)}><FaBasketShopping /></div>
                         <div onClick={() => addWish(products)} ><FaHeart /></div>
                         <div><Link to={`/${id}`}><FaEye /></Link></div>
                     </div>
